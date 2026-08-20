@@ -1,51 +1,87 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
-
-hero:
-  name: "XZ_NOTE"
-  text: "把遇到的问题，变成可复用的答案"
-  tagline: 一个持续生长的个人技术知识库 · Linux · 编程 · 工具实践
-  image:
-    src: /头像.png
-    alt: XZ_NOTE 头像
-  actions:
-    - theme: brand
-      text: 开始阅读
-      link: /linux/
-    - theme: alt
-      text: 浏览 Markdown 示例
-      link: /markdown-examples
-
-features:
-  - icon: ◈
-    title: 系统化整理
-    details: 将零散的学习记录沉淀成清晰、可检索的知识路径。
-  - icon: ⌘
-    title: 实战优先
-    details: 记录真实开发中的命令、配置、排错过程与经验总结。
-  - icon: ↗
-    title: 持续更新
-    details: 每一次提交，都是给未来的自己留下一份更好的说明书。
 ---
 
-<div class="home-dashboard">
-  <div class="dashboard-heading">
-    <div><span class="eyebrow">EXPLORE THE KNOWLEDGE BASE</span><h2>从这里开始探索</h2></div>
-    <span class="status-dot"><i></i> 持续更新中</span>
-  </div>
+<script setup>
+import { onMounted, onBeforeUnmount } from 'vue'
 
-  <div class="topic-grid">
-    <a class="topic-card topic-card--accent" href="/linux/">
-      <div class="topic-icon">⌘_</div><div class="topic-card__body"><span class="topic-kicker">01 / SYSTEM</span><h3>Linux &amp; 系统</h3><p>从常用命令到服务配置，建立可靠的系统操作习惯。</p><span class="topic-link">进入专题 <b>→</b></span></div>
-    </a>
-    <a class="topic-card" href="/programming/">
-      <div class="topic-icon">&lt;/&gt;</div><div class="topic-card__body"><span class="topic-kicker">02 / BUILD</span><h3>编程与开发</h3><p>编程语言、开发实践与那些值得反复回看的思考。</p><span class="topic-link">进入专题 <b>→</b></span></div>
-    </a>
-    <a class="topic-card" href="/markdown-examples">
-      <div class="topic-icon">✦</div><div class="topic-card__body"><span class="topic-kicker">03 / TOOLS</span><h3>工具与写作</h3><p>Markdown 能力与文档工作流，让知识表达更高效。</p><span class="topic-link">查看示例 <b>→</b></span></div>
-    </a>
-  </div>
+const ROLE_TEXT = '把遇到的问题，变成可复用的答案'
 
-  <div class="terminal-note"><span class="terminal-dots"><i></i><i></i><i></i></span><code><em>~/xz_note</em> $ echo "keep learning, keep building"</code></div>
+onMounted(() => {
+  // 首页固定，禁止滚轮滚动
+  document.body.style.overflow = 'hidden'
+
+  const cover = document.querySelector('.home-cover')
+  const glow = document.querySelector('.home-cover__spotlight')
+  const role = document.querySelector('.home-cover__role')
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  // 鼠标跟随光斑
+  if (cover && glow && window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reduced) {
+    const onMove = (e) => {
+      const r = cover.getBoundingClientRect()
+      const x = e.clientX - r.left
+      const y = e.clientY - r.top
+      glow.style.opacity = '1'
+      glow.style.transform = `translate(${x - 150}px, ${y - 150}px)`
+    }
+    const onLeave = () => { glow.style.opacity = '0' }
+    cover.addEventListener('mousemove', onMove)
+    cover.addEventListener('mouseleave', onLeave)
+    onBeforeUnmount(() => {
+      cover.removeEventListener('mousemove', onMove)
+      cover.removeEventListener('mouseleave', onLeave)
+    })
+  }
+
+  // 标语：从左到右逐个出现，停顿，再从右到左逐个消失，循环
+  if (role) {
+    if (reduced) {
+      role.textContent = ROLE_TEXT
+    } else {
+      let visible = 0
+      let phase = 'typing' // typing -> hold -> deleting -> typing ...
+      let hold = 0
+      let timer = 0
+
+      const tick = () => {
+        if (phase === 'typing') {
+          visible += 1
+          role.textContent = ROLE_TEXT.slice(0, visible)
+          if (visible >= ROLE_TEXT.length) { phase = 'hold'; hold = 12 }
+        } else if (phase === 'hold') {
+          hold -= 1
+          if (hold <= 0) phase = 'deleting'
+        } else {
+          visible -= 1
+          role.textContent = ROLE_TEXT.slice(0, visible)
+          if (visible <= 0) phase = 'typing'
+        }
+        timer = window.setTimeout(tick, phase === 'typing' ? 110 : phase === 'deleting' ? 90 : 110)
+      }
+
+      role.textContent = ''
+      tick()
+      onBeforeUnmount(() => window.clearTimeout(timer))
+    }
+  }
+
+  onBeforeUnmount(() => { document.body.style.overflow = '' })
+})
+</script>
+
+<div class="home-cover">
+  <div class="home-cover__spotlight" aria-hidden="true"></div>
+  <div class="home-cover__glow" aria-hidden="true"></div>
+  <img class="home-cover__avatar" src="/头像.png" alt="XZ_NOTE 头像" />
+  <h1 class="home-cover__name">XZ_NOTE</h1>
+  <p class="home-cover__role">把遇到的问题，变成可复用的答案</p>
+  <nav class="home-cover__links">
+    <a href="/SLAM/">SLAM</a>
+    <a href="/linux/">Linux</a>
+    <a href="/programming/">编程</a>
+    <a href="/VLN/">VLN</a>
+    <a href="/Docs/">文档</a>
+  </nav>
+  <div class="home-cover__foot">持续记录，持续成长 · © 2026 XZ_NOTE</div>
 </div>

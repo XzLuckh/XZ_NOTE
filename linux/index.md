@@ -1,28 +1,32 @@
-# Linux 笔记
+<div class="slam-hero">
+  <p class="slam-eyebrow">SYSTEM · LINUX</p>
+  <h1>Linux 笔记</h1>
+  <p class="slam-lead">常用命令、系统配置与服务运维的实践记录，把高频操作沉淀成可靠的速查手册。</p>
+</div>
 
-这里记录我的 Linux 学习笔记。
+<div class="slam-board">
+  <div class="slam-card">
+    <h3>⌘ 常用命令</h3>
+    <p>目录、文件、进程、网络、权限等高频命令速查。</p>
+    <a class="more-link" href="/linux/commands">进入笔记 <b>→</b></a>
+  </div>
+  <div class="slam-card">
+    <h3>🧰 Shell 脚本</h3>
+    <p>Shell 编程、变量与自动化脚本实践。</p>
+    <span class="status-pill status--plan">待补充</span>
+  </div>
+  <div class="slam-card">
+    <h3>🐳 Docker</h3>
+    <p>容器化开发、镜像与 Compose 使用记录。</p>
+    <span class="status-pill status--plan">待补充</span>
+  </div>
+  <div class="slam-card">
+    <h3>🌐 Nginx</h3>
+    <p>反向代理、负载均衡与站点配置笔记。</p>
+    <span class="status-pill status--plan">待补充</span>
+  </div>
+</div>
 
-## 内容
-
-- 常用命令
-- Shell
-- Docker
-- Nginx
-
----
-layout: home
-
-hero:
-  name: "XZ_NOTE"
-  text: "我的技术笔记"
-  tagline: 记录学习、开发与踩坑过程
-
-features:
-  - title: Linux
-    details: Linux、Shell、系统配置相关笔记
-  - title: 编程
-    details: 编程语言、算法与开发实践
-  - title: 工具
-    details: Git、Docker、开发工具使用记录
-
----
+<div class="note-box">
+<b>持续更新：</b>更多 Linux 主题正在整理中，会陆续补充到本板块。
+</div>

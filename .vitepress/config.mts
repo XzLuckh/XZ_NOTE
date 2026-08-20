@@ -20,8 +20,33 @@ export default defineConfig({
       { text: '编程', link: '/programming/' },
     ],
     sidebar: {
-
-      '/SLAM/': [{ text: 'SLAM', items: [{ text: '概览', link: '/SLAM/' }, { text: 'Projects', link: '/SLAM/Projects/index' }] }],
+      '/SLAM/': [{
+        text: 'SLAM',
+        items: [
+          { text: '概览', link: '/SLAM/' },
+          {
+            text: '项目 Projects',
+            collapsed: false,
+            items: [
+              {
+                text: '项目总览',
+                link: '/SLAM/Projects/',
+                collapsed: false,
+                items: [
+                  { text: 'GO2 + rslidar 16 FAST-SAM', link: '/SLAM/Projects/GO2-rslidar-16-fast-sam/' },
+                  { text: 'FAST-LIO2 真机部署 + RTK', link: '/SLAM/Projects/FAST-LIO2-RTK/' },
+                  { text: 'PCT + Scan-Planner 导航', link: '/SLAM/Projects/PCT-Scan-Planner/' },
+                  { text: 'FAST-LIVO2 复现与重建', link: '/SLAM/Projects/FAST-LIVO2/' },
+                  { text: 'FAST-LIO2 有图 / 无图导航', link: '/SLAM/Projects/FAST-LIO2-no-map-navigation/' },
+                  { text: 'Cartographer 仿真与真机', link: '/SLAM/Projects/Cartographer/' },
+                ]
+              }
+            ]
+          },
+          { text: '论文 Paper', link: '/SLAM/Paper/' },
+          { text: '学习记录 Study', link: '/SLAM/Study/' }
+        ]
+      }],
       '/VLN/': [{ text: 'VLN', items: [{ text: '概览', link: '/VLN/' }, { text: 'Study', link: '/VLN/Study/' }] }],
       '/Docs/': [{ text: 'Docs', items: [{ text: '概览', link: '/Docs/' }, { text: '半人型底盘启动', link: '/Docs/半人型底盘启动' },  { text: 'mb导航车配置', link: '/Docs/mb导航车配置文件' }] }],
       '/linux/': [{ text: 'Linux', items: [{ text: '概览', link: '/linux/' }, { text: '常用命令', link: '/linux/commands' }] }],

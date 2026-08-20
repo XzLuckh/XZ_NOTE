@@ -53,23 +53,19 @@ localhost:5901
 ```
 
 
+### 启动雷达
 
+cd ROS/helios_ws/
+source devel/setup.bash 
+roslaunch rslidar_sdk start.launch 
 
+### imu
+cd ROS/IMU_ws/
+source devel/setup.bash 
+roslaunch yesense_imu yesense_ahrs.launch 
 
+### 启动fast-lio2
 
-
-启动雷达
-
-mb@mb-Default-string:~$ cd ROS/helios_ws/
-mb@mb-Default-string:~/ROS/helios_ws$ source devel/setup.bash 
-mb@mb-Default-string:~/ROS/helios_ws$ roslaunch rslidar_sdk start.launch 
-
-imu
-mb@mb-Default-string:~$ cd ROS/IMU_ws/
-mb@mb-Default-string:~/ROS/IMU_ws$ source devel/setup.bash 
-mb@mb-Default-string:~/ROS/IMU_ws$ roslaunch yesense_imu yesense_ahrs.launch 
-
-启动fast-lio2
-mb@mb-Default-string:~$ cd ROS/FAST_LIO_ws/
-mb@mb-Default-string:~/ROS/FAST_LIO_ws$ source devel/setup.bash 
-mb@mb-Default-string:~/ROS/FAST_LIO_ws$ roslaunch fast_lio mapping_rslidar_helios16.launch
+cd ROS/FAST_LIO_ws/
+source devel/setup.bash 
+roslaunch fast_lio mapping_rslidar_helios16.launch
