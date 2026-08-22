@@ -44,7 +44,14 @@ export default defineConfig({
             ]
           },
           { text: '论文 Paper', link: '/SLAM/Paper/' },
-          { text: '学习记录 Study', link: '/SLAM/Study/' }
+          {
+            text: '学习记录 Study',
+            collapsed: false,
+            items: [
+              { text: '记录总览', link: '/SLAM/Study/' },
+              { text: 'Cartographer 技术文档', link: '/SLAM/Study/Cartographer/' },
+            ]
+          }
         ]
       }],
       '/VLN/': [{ text: 'VLN', items: [{ text: '概览', link: '/VLN/' }, { text: 'Study', link: '/VLN/Study/' }] }],

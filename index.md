@@ -11,28 +11,8 @@ onMounted(() => {
   // 首页固定，禁止滚轮滚动
   document.body.style.overflow = 'hidden'
 
-  const cover = document.querySelector('.home-cover')
-  const glow = document.querySelector('.home-cover__spotlight')
   const role = document.querySelector('.home-cover__role')
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-  // 鼠标跟随光斑
-  if (cover && glow && window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reduced) {
-    const onMove = (e) => {
-      const r = cover.getBoundingClientRect()
-      const x = e.clientX - r.left
-      const y = e.clientY - r.top
-      glow.style.opacity = '1'
-      glow.style.transform = `translate(${x - 150}px, ${y - 150}px)`
-    }
-    const onLeave = () => { glow.style.opacity = '0' }
-    cover.addEventListener('mousemove', onMove)
-    cover.addEventListener('mouseleave', onLeave)
-    onBeforeUnmount(() => {
-      cover.removeEventListener('mousemove', onMove)
-      cover.removeEventListener('mouseleave', onLeave)
-    })
-  }
 
   // 标语：从左到右逐个出现，停顿，再从右到左逐个消失，循环
   if (role) {
@@ -71,7 +51,6 @@ onMounted(() => {
 </script>
 
 <div class="home-cover">
-  <div class="home-cover__spotlight" aria-hidden="true"></div>
   <div class="home-cover__glow" aria-hidden="true"></div>
   <img class="home-cover__avatar" src="/头像.png" alt="XZ_NOTE 头像" />
   <h1 class="home-cover__name">XZ_NOTE</h1>

@@ -24,7 +24,7 @@
 
 | 日期 | 主题 | 分类 | 链接 |
 | ---- | ---- | ---- | ---- |
-| 【待补充】 | | | |
+| 2025-12 | Cartographer 技术文档（Ubuntu 20.04 · ROS 1 Noetic） | 开源框架 | [Cartographer 技术文档](./Cartographer/) |
 
 <div class="note-box">
 每篇记录一个 md 文件，建议放在对应分类子文件夹（如 <code>SLAM/Study/point-cloud/</code>）下，配图放在该文件夹的 <code>images/</code> 目录。

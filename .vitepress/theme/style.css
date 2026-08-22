@@ -1067,3 +1067,142 @@ details.template-box .template-body { padding: 6px 18px 18px; }
     transform: none !important;
   }
 }
+
+/* =========================================================
+   受保护外链（Gitee / 视频）+ 卡片底部
+   ========================================================= */
+.slam-card__foot {
+  margin-top: auto;
+  padding-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.protected-links { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.protected-links__item {
+  padding: 4px 11px;
+  border-radius: 8px;
+  border: 1px solid rgba(124, 108, 255, .34);
+  background: rgba(124, 108, 255, .08);
+  color: #b9b2ff;
+  font-size: .78rem;
+  text-decoration: none;
+  transition: background .2s, border-color .2s;
+}
+.protected-links__item:hover { background: rgba(124, 108, 255, .18); border-color: rgba(124, 108, 255, .6); }
+.protected-links__lock {
+  padding: 4px 11px;
+  border-radius: 8px;
+  border: 1px dashed var(--vp-c-divider);
+  background: transparent;
+  color: var(--vp-c-text-2);
+  font-size: .76rem;
+  cursor: pointer;
+  transition: border-color .2s, color .2s;
+}
+.protected-links__lock:hover { border-color: rgba(124, 108, 255, .5); color: var(--vp-c-brand-1); }
+.protected-links__form { display: inline-flex; gap: 6px; align-items: center; }
+.protected-links__form input {
+  width: 118px;
+  padding: 4px 8px;
+  border-radius: 7px;
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  font-size: .78rem;
+  outline: none;
+  transition: border-color .2s;
+}
+.protected-links__form input:focus { border-color: var(--vp-c-brand-1); }
+.protected-links__form button {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 7px;
+  background: var(--vp-c-brand-1);
+  color: #fff;
+  font-size: .76rem;
+  cursor: pointer;
+  transition: background .2s;
+}
+.protected-links__form button:hover { background: var(--vp-c-brand-2); }
+.protected-links__error { color: #d64545; font-size: .74rem; }
+:root:not(.dark) .protected-links__item {
+  color: #5c4fe0;
+  background: rgba(92, 79, 224, .06);
+  border-color: rgba(92, 79, 224, .22);
+}
+
+/* =========================================================
+   全站鼠标跟随光斑（覆盖整个页面背景）
+   ========================================================= */
+.site-spotlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 108, 255, .1), rgba(124, 108, 255, .04) 42%, transparent 68%);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity .3s;
+  will-change: transform;
+}
+:root:not(.dark) .site-spotlight {
+  background: radial-gradient(circle, rgba(124, 108, 255, .08), rgba(124, 108, 255, .03) 42%, transparent 68%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-spotlight { display: none; }
+}
+
+/* =========================================================
+   论文列表：简洁精致的编辑式行
+   ========================================================= */
+.paper-list { border-top: 1px solid var(--vp-c-divider); margin: 18px 0 40px; }
+.paper-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 15px 10px;
+  border-bottom: 1px solid var(--vp-c-divider);
+  color: inherit;
+  text-decoration: none;
+  transition: background .2s, padding .2s;
+}
+.paper-row:hover {
+  background: var(--vp-c-bg-soft);
+  padding-left: 16px;
+}
+.paper-row__year {
+  width: 52px;
+  flex-shrink: 0;
+  font-family: var(--vp-font-family-mono);
+  font-size: .82rem;
+  color: var(--vp-c-text-2);
+  letter-spacing: .04em;
+}
+.paper-row__name {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: color .2s;
+}
+.paper-row:hover .paper-row__name { color: var(--vp-c-brand-1); }
+.paper-row .status-pill { flex-shrink: 0; }
+.paper-row__arrow {
+  flex-shrink: 0;
+  color: var(--vp-c-text-2);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity .2s, transform .2s;
+}
+.paper-row:hover .paper-row__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+@media (max-width: 520px) {
+  .paper-row { gap: 12px; }
+  .paper-row__year { width: 40px; }
+}

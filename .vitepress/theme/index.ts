@@ -2,6 +2,8 @@ import DefaultTheme from 'vitepress/theme'
 import { h, defineComponent, computed } from 'vue'
 import { useData } from 'vitepress'
 import PasswordGate from './PasswordGate.vue'
+import ProtectedLinks from './ProtectedLinks.vue'
+import SiteSpotlight from './SiteSpotlight.vue'
 import { isUnlocked } from './access'
 import './style.css'
 
@@ -37,10 +39,15 @@ const withDocsPassword = {
           return h(PasswordGate)
         }
 
-        return h(DefaultTheme.Layout)
+        // 全局鼠标跟随光斑 + 默认布局
+        return [h(SiteSpotlight), h(DefaultTheme.Layout)]
       }
     }
-  })
+  }),
+  enhanceApp({ app }) {
+    // 公开页面上受保护的仓库 / 视频链接
+    app.component('ProtectedLinks', ProtectedLinks)
+  }
 }
 
 export default withDocsPassword
