@@ -20,7 +20,7 @@ onMounted(() => {
       role.textContent = ROLE_TEXT
     } else {
       let visible = 0
-      let phase = 'typing' // typing -> hold -> deleting -> typing ...
+      let phase = 'typing'
       let hold = 0
       let timer = 0
 
